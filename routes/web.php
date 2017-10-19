@@ -33,3 +33,10 @@ Route::prefix('bunch/{id_bunch}')->group(function () {
 	Route::resource('subscriber', 'SubscriberController');
 });
 Route::resource('report', 'ReportController');
+
+// Route::get('send_test_email', function(){
+// 	Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
+// 	{
+// 		$message->to('johndoe@gmail.com');
+// 	});
+// });

@@ -8,12 +8,12 @@
                     <div class="panel-heading">Subscribers for</div>
                     <div class="centered-child col-md-9 col-sm-7 col-xs-6">Subscribers for <b>{{ $bunch->name_bunch }}</b></div>
                     <div class="panel-body">
-                        {{--dd($id_bunch)--}}
+                        {{--dd($id_bunch) undifined--}}
                         {{ link_to_route('subscriber.create', 'create', [$bunch->id_bunch], ['class' => 'btn btn-info btn-xs']) }}
                          <a class="btn btn-info btn-xs col-md-1 col-sm-2 col-xs-2" href="{{route('subscriber.index')}}">
                         <i class="fa fa-backward" aria-hidden="true"></i> back
                         </a>
-                        <div class="text-right"><i class="badge">{{ $bunch->subscribers->count()' }}</i></div><br>
+                        <div class="text-right"><i class="badge">{{ $bunch->subscribers->count() }}</i></div><br>
                         <hr>
                         <table class="table table-bordered table-responsive table-striped">
                             <tr>

@@ -3,10 +3,21 @@
     {!!Form::text('name_compaign', null, ['class' => 'form-control']) !!}
 
 {{-- DROPDOWN --}}
-{!!Form::select('size', array('template_id' => 'id_template')) !!}
+{!! Form::label('template_id', 'Template') !!}
+{!! Form::select(
+ 'template_id',
+ \App\Template::getSelectList(),
+ isset($compaign) ? $compaign->template_id : null,
+ ['class' => 'form-control']
+ ) !!}
 
-{!!Form::select('size', array('bunch_id' => 'id_bunch' !!}
-
+{!! Form::label('bunch_id', 'bunch') !!}
+{!! Form::select(
+ 'bunch_id',
+ \App\bunch::getSelectList(),
+ isset($compaign) ? $compaign->bunch_id : null,
+ ['class' => 'form-control']
+ ) !!}
     
     {!!Form::label('description_compaign', 'Description') !!}
     {!!Form::text('description_compaign', null, ['class' => 'form-control']) !!}

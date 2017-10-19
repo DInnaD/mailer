@@ -28,7 +28,7 @@ class CreateCompaignsTable extends Migration
            
             $table->foreign('template_id')->references('id_template')->on('templates');
             $table->foreign('bunch_id')->references('id_bunch')->on('bunches');
-            $table->foreign('user_id')->references('id')->on('users');
+             $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

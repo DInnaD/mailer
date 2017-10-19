@@ -14,14 +14,13 @@ class Report extends Model
     protected $fillable = ['compaign_id', 'subscriber_id', 'subscriber_id'];
     
     //public function getCreatedFormatAttribute('Y-m-d H:i:s'$subscriberses)->format('Y-m-d / H:i:s');
-    public static function compaign(){
-        return $this->hasOne(Compaign::class, 'id_compaign', 'compaign_id');
-    }
-    public static function subscriber(){
-        return $this->hasOne(Subscriber::class, 'id_subscriber', 'subscriber_id');
-
-    } 
-    public static function user(){
-        return $this->hasOne(User::class, 'id', 'user_id');
-    }
+    
+    public function compaigns(){
+		return $this->hasMany(Compaign::class);
+	}
+	public function subscribers(){
+		return $this->hasMany(Subscriber::class);
+	}
+	/////////////////////////////////////////////////////
+ 
 }

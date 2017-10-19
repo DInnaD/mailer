@@ -9,6 +9,9 @@
 
                     <div class="panel-body">
                         {{ link_to_route('bunch.create', 'create', null, ['class' => 'btn btn-info btn-xs']) }}
+                        
+
+                    <hr>
                         <table class="table table-bordered table-responsive table-striped">
                             <tr>
                                 <th width="5%">id</th>
@@ -35,7 +38,7 @@
                                 <td>{{$model->id_bunch}}</td>
                                 
                                 <td>{{$model->name_bunch}}</td>
-                                <td>{{$model->mail_count_subscriber}}</td>
+                                <td>{{$model->bunch_id_count}}</td>
                                 <td>{{$model->description_bunch}}</td>
 
                                 <td>{{$model->created_at}}</td>

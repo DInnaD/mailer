@@ -12,6 +12,7 @@
             <a class="btn btn-info btn-xs col-md-1 col-sm-2 col-xs-2" href="{{route('compaign.index')}}">
                 <i class="fa fa-backward" aria-hidden="true"></i> back
             </a>
+            
             <div class="centered-child col-md-9 col-sm-7 col-xs-6">Campaign Preview<b>{{ $send->subject_send }}</b></div>
             <div class="col-md-2 col-sm-3 col-xs-4">
                 <div class="pull-right">
@@ -40,7 +41,7 @@
 
     </div>
     <div class="panel-body">
-        {!! Form::model($send, ['route' => ['send.index', $send->id_send, 'method' => 'POST']) !!}
+        {{-- !! Form::model($send, ['route' => ['send.index', $send->id_send, 'method' => 'POST']) !! --}}
 
         @include('send._form')
 

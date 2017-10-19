@@ -13,6 +13,7 @@ class CreateSubscribersTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('subscribers', function (Blueprint $table) {
             $table->increments('id_subscriber');
             $table->integer('user_id')->nullable()->unsigned();

@@ -19,7 +19,8 @@ class BunchController extends Controller
 
     public function index(Bunch $bunch, Subscriber $subscriber)
     {
-        //asc
+        
+        //asc 
        $bunches = $bunch->orderBy('id_bunch', 'desc')->get();
           
         //'bunches' -> Bunch::latest()->paginate(10);
@@ -59,9 +60,14 @@ class BunchController extends Controller
      * @param  Bunch  $bunch
      * @return \Illuminate\Http\Response
      */
-    public function show(Bunch $bunch)
+    public function show(Bunch $bunch, Subscriber $subscriber)
     {
-        return view('bunch.show', compact('bunch'));
+             //связи между
+//моделями. С их помощью можно получить всех подписчиков из списка просто вызвав
+//свойство обьекта, с которым они связаны:
+        //$subscribers = 
+        //$bunch->subscribers;
+        return view('bunch.show', compact('bunch', 'subscribers'));
     }
 
     /**

@@ -27,22 +27,41 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // relatons
-    public static function temlate(){
-        return $this->hasOne(Template::class, 'id_template', 'temlate_id');
-    }
-     public static function compaign(){
-        return $this->hasOne(Compaign::class, 'id_compaign', 'compaign_id');
-    }
-    public static function subscribers(){
-        return $this->hasOne(Subscriber::class, 'id_subscriber', 'subscriber_id');
+public function report(){
+return $this->belongsTo(Report::class);
+}
+public function temlate(){
+return $this->belongsTo(Subscriber::class);
+}
+public function compaign(){
+return $this->belongsTo(Compaign::class);
+}
+public function subscriber(){
+return $this->belongsTo(Subscriber::class);
+}
+public function bunche(){
+return $this->belongsTo(Bunch::class);
+}
+public function send(){
+return $this->belongsTo(Send::class);
+}
 
-    }
-    public static function bunch(){
-        return $this->hasOne(Bunch::class, 'id_bunch', 'bunch_id');
-    }
-    public static function sends(){
-        return $this->hasOne(Send::class, 'id_send', 'send_id');
-    }
+    // relatons
+    // public static function temlate(){
+    //     return $this->hasOne(Template::class, 'id_template', 'temlate_id');
+    // }
+    //  public static function compaign(){
+    //     return $this->hasOne(Compaign::class, 'id_compaign', 'compaign_id');
+    // }
+    // public static function subscribers(){
+    //     return $this->hasOne(Subscriber::class, 'id_subscriber', 'subscriber_id');
+
+    // }
+    // public static function bunch(){
+    //     return $this->hasOne(Bunch::class, 'id_bunch', 'bunch_id');
+    // }
+    // public static function sends(){
+    //     return $this->hasOne(Send::class, 'id_send', 'send_id');
+    // }
     //report withiot
 }

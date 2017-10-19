@@ -8,6 +8,7 @@
                     <div class="panel-heading">Campaigns</div>
 
                     <div class="panel-body">
+                    {{--dd($id_send)--}}
                         {{ link_to_route('compaign.create', 'create', null, ['class' => 'btn btn-info btn-xs']) }}
                         <table class="table table-bordered table-responsive table-striped">
                             <tr>

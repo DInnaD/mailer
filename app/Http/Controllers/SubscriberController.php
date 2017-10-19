@@ -18,9 +18,15 @@ class SubscriberController extends Controller
 
     public function index(Bunch $bunch, Subscriber $subscriber )
     {
+        //$subscribers = $bunch->subscribers;
+       // public function someFunction(Bunch $bunch){
+$subscribers = Subscriber::where('bunch_id', $bunch->id_subscriber)->get();
+//}
+
+
+
         //asc
-        
-        $subscribers = $subscriber->orderBy('id_subscriber', 'desc')->get();
+        //$subscribers = $subscriber->orderBy('id_subscriber', 'desc')->get();
 
 
         //$email_count_subsciber = [
@@ -69,6 +75,7 @@ return view('subscriber.index', compact('bunch', 'subscribers'));
      */
     public function show(Subscriber $subscriber)
     {
+
         return view('subscriber.show', compact('subscriber'));
     }
 
