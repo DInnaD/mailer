@@ -26,10 +26,10 @@ Route::resource('template', 'TemplateController');
 Route::resource('compaign', 'CompaignController');
 //->where(['id' => '[0-9]+']) undif method?????????
 //{bunch}to index crud bunchcontroller
-Route::prefix('compaign/{id_compaign}')->group(function () {
+Route::prefix('compaign/{compaign}')->group(function () {
 	Route::resource('send', 'SendController');
 });
-Route::prefix('bunch/{id_bunch}')->group(function () {
+Route::prefix('bunch/{bunch}')->group(function () {
 	Route::resource('subscriber', 'SubscriberController');
 });
 Route::resource('report', 'ReportController');

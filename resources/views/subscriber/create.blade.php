@@ -8,7 +8,7 @@
     </div>
 
     <div class="panel-body">
-        {!! Form::open(['route' => 'subscriber.store']) !!}
+        {!! Form::open(['route' => 'subscriber.store', 'bunch' => $bunch]) !!}
 
         @include('subscriber._form')
 

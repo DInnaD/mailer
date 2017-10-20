@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Template extends Model
 {
-    use Selectable;
-    use SoftDeletes;
+    use Selectable, SoftDeletes;
 //for updating without del id or other main fields, stus 'fillable' equal update agriment
     protected $primaryKey = 'id_template';
+    protected $name = 'name_template';
+    protected $content = 'content_template';
+
     protected $fillable = ['name_template', 'content_template'];
     
     public function compaign(){

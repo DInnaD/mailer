@@ -6,6 +6,7 @@ use App\Http\Requests\SendRequest;
 use App\Send;
 use Illuminate\Http\Request;
 use App\Compaign;
+use App\Subscribers;
 
 
 
@@ -36,14 +37,14 @@ class SendController extends Controller
         /////////////////////////
         $sends = [
 
- 'to' -> Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
- {
+        'to' -> Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
+            {
      
-     $message->to('innadanylevska@gmail.com')
- }),
-        'sends' -> Send::latest()->paginate(10)
-  ];
-  return view('send.index', $sends);
+                 $message->to('innadanylevska@gmail.com')
+            }),
+        'send' -> Send::latest()->paginate(10)
+                 ];
+        return view('send.index', $sends);
         
     }
 
@@ -54,13 +55,12 @@ class SendController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     
+     */
     public function store(Send $send, SubscriberRequest $request)
     {
         $send->create($request->all());
 
         return redirect()->route('send.index');
     }
-*/
-   
+
 }

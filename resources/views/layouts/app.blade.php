@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -84,11 +85,13 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+   
+   <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
     <script>
-        CKEDITOR.replace( 'class' );
+        $('.class').ckeditor();
+        // $('.textarea').ckeditor(); // if class is prefered.
     </script>
+
 </body>
 </html>

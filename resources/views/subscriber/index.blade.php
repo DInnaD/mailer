@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         {{--dd($id_bunch) undifined--}}
                         {{ link_to_route('subscriber.create', 'create', [$bunch->id_bunch], ['class' => 'btn btn-info btn-xs']) }}
-                         <a class="btn btn-info btn-xs col-md-1 col-sm-2 col-xs-2" href="{{route('subscriber.index')}}">
+                         <a class="btn btn-info btn-xs col-md-1 col-sm-2 col-xs-2" href="{{route('subscriber.index', [$bunch->id])}}">
                         <i class="fa fa-backward" aria-hidden="true"></i> back
                         </a>
                         <div class="text-right"><i class="badge">{{ $bunch->subscribers->count() }}</i></div><br>
@@ -58,7 +58,9 @@
                                
                                 <!--??????????????????????????????????created_at_subscribers-->
                                 <td>
-                                    {{Form::open(['class' => 'confirm-delete', 'route' => ['subscriber.destroy', $model->id_subscriber], 'method' => 'DELETE'])}}
+
+                                    
+                                    {{Form::open(['class' => 'confirm-delete', 'route' => array_merge(['subscriber.destroy'], compact('bunch','subscriber')), $model->id_subscriber], ['method' => 'DELETE'])}}
                                     {{ link_to_route('subscriber.show', 'info', [$model->id_subscriber], ['class' => 'btn btn-info btn-xs']) }} |
                                     {{ link_to_route('subscriber.edit', 'edit', [$model->id_subscriber], ['class' => 'btn btn-success btn-xs']) }} |
                                     {{Form::button('Delete', ['class' => 'btn btn-danger btn-xs', 'type' => 'submit'])}}

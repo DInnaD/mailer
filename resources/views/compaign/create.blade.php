@@ -3,7 +3,7 @@
 @section('panel')
     <div class="panel-heading container-fluid">
         <div class="form-group">
-            <div class="centered-child col-md-11 col-sm-10 col-xs-10"><b>New Conpaigne</b></div>
+            <div class="centered-child col-md-11 col-sm-10 col-xs-10"><b>New Canpaign</b></div>
         </div>
     </div>
 

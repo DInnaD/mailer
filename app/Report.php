@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     //
-    
+    use Selectable;
     protected $primaryKey = 'id_report';
+    
 //for updating without del id or other main fields, stus 'fillable' equal update agriment
     
     protected $fillable = ['compaign_id', 'subscriber_id', 'subscriber_id'];

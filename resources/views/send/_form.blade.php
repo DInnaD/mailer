@@ -7,6 +7,6 @@
     {!!Form::text('from_send', null, ['class' => 'form-control']) !!}
     {!!Form::label('message_send', 'Message') !!}
     {!!Form::textarea('message_send', null, ['class' => 'form-control']) !!}
-    
+    {{-- DROPDOWN --}}
 </div>
 

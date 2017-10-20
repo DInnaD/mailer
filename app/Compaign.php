@@ -12,47 +12,55 @@ class Compaign extends Model
 //for updating without del id or other main fields, stus 'fillable' equal update agriment
    
 
-    use Selectable, SoftDeletes, Avaliable {
+    use Selectable, SoftDeletes;//, Avaliable {
 
-        boot as bootOwnedEvents;
-    }
+    //     boot as bootOwnedEvents;
+    // }
     
     
 
     protected $primaryKey = 'id_compaign';
+    protected $name = 'name_compaign';
+    protected $status = 'status_compaign';
+
     protected $attributes = [
         'status' => 10
     ];
-    public function getOwenedFields(){
+    // public function getOwnedFields(){
 
-        return 'user_id','created_by';
-    }
-    public static function boot(){
+    //     return 'user_id','created_by';
+    // }
+    // public static function boot(){
 
-        parent::boot();
-        self::bootOwenedEvents();
-        parent::observe(new CampaignsObserver());
-    }
+    //     parent::boot();
+    //     self::bootOwenedEvents();
+    //     parent::observe(new CampaignsObserver());
+    // }
     
     protected $fillable = ['name_compaign', 'template_id', 'bunch_id', 'description_compaign'];
    
 
     
 
-	public function temlates(){
-		return $this->hasMany(Temlate::class);
+	public function temlate(){
+		return $this->hasOne(Temlate::class);
 	}
-	public function bunches(){
-		return $this->hasMany(Bunch::class);
+	public function bunch(){
+		return $this->hasOne(Bunch::class);
 	}	
 	public function user(){
-		return $this->hasMany(User::class);
+		return $this->hasOne(User::class);
 	}
 	/////////////////////////////////////////////////////
-	public function sends(){
+	public function send(){
  			return $this->belongsTo(Send::class);
 	}
 	 public function report(){
  		return $this->belongsTo(Report::class);
+	}
+
+	public function getSubscribersList(){
+		$mail_subscriber = array_column($this->bunch->subscribers, 'mail_subscriber');
+        return implode(', ', $mail_subscriber);
 	}
 }

@@ -49,7 +49,7 @@
                                 <td>
                                     {{Form::open(['class' => 'confirm-delete', 'route' => ['compaign.destroy', $model->id_compaign], 'method' => 'DELETE'])}}
 
-                                    {{ link_to_route('send.index', 'sends', [$model->id_compaign], ['class' => 'btn btn-success btn-xs']) }} |
+                                    {{ link_to_route('send.index', 'send', [$model->id_compaign], ['class' => 'btn btn-success btn-xs']) }} |
 
                                     {{ link_to_route('compaign.show', 'info', [$model->id_compaign], ['class' => 'btn btn-success btn-xs']) }} |
 

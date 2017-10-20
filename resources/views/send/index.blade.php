@@ -16,7 +16,7 @@
             <div class="centered-child col-md-9 col-sm-7 col-xs-6">Campaign Preview<b>{{ $send->subject_send }}</b></div>
             <div class="col-md-2 col-sm-3 col-xs-4">
                 <div class="pull-right">
-                    {{Form::open(['class' => 'confirm-delete', 'route' => ['send.destroy', $send->id_send], 'method' => 'DELETE'])}}
+                    {{Form::open(['class' => 'confirm-delete', 'route' => array_merge(['send.destroy'], compact('compaign','send')), 'method' => 'DELETE'])}}
                     {{ link_to_route('send.edit', 'edit', [$send->id_send], ['class' => 'btn btn-primary btn-xs']) }} |
                     {{Form::button('Delete', ['class' => 'btn btn-danger btn-xs', 'type' => 'submit'])}}
                     {{Form::close()}}
@@ -31,8 +31,13 @@
                 <th width="25%">Attribute</th>
                 <th width="75%">Value</th>
             </tr>
+             <tr>
+                    <td>Subscribers</td>
+                    <td>$campaign->getSubscribersList()</td>
+                </tr>
+            
             @foreach ($send->getAttributes() as $attribute => $value)
-                <tr>
+               <tr>
                     <td>{{$attribute}}</td>
                     <td>{{$value}}</td>
                 </tr>
@@ -40,17 +45,19 @@
         </table>
 
     </div>
-    <div class="panel-body">
-        {{-- !! Form::model($send, ['route' => ['send.index', $send->id_send, 'method' => 'POST']) !! --}}
+        <div class="panel-body">
+        {!! Form::open(['route' => 'send.store']) !!}
 
         @include('send._form')
 
         <div class="form-group">
             {!! Form::button('SEND THIS CAMPAIGN', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
-    </div>
+        </div>
 
         {!! Form::close() !!}
 
+        </div>
+    
 
 
 

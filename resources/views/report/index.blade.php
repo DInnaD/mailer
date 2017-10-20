@@ -12,7 +12,8 @@
                         <table class="table table-bordered table-responsive table-striped">
                             <tr>
                                 <th width="25%">id</th>
-                                <th width="20%">Status</th>
+                                <th width="10%">Campaign Name</th>
+                                <th width="10%">Status</th>
                                 <th width="25%">Viewed</th>
                                 <th width="25%">Unsubscribers</th>
                                 
@@ -31,10 +32,10 @@
                         @foreach ($reports as $model)
                             <tr>
                                 <td>{{$model->id_report}}</td>
-
-                                <td>{{$model->status_compaign}}</td>
-                                <td>{{$model->viewed_subscriber}}</td>
-                                <td>{{$model->unsubscriber_subscriber}}</td>
+                                <td>{{$model->compaign_id}}</td>
+                                <td>{{$model->compaign_id}}</td>
+                                <td>{{$model->subscriber_id}}</td>
+                                <td>{{$model->subscriber_id}}</td>
 
                                 
                                 <td>

@@ -14,13 +14,18 @@ class SubscriberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function index(Subscriber $subscriber, Bunch $bunch)
+    {
+        $subscribers = $bunch->subscribers;        
+        return view('subscriber.index', compact('bunch', 'subscribers'));    
+    }
     //Subscriber $subscriber-????????///
 
-    public function index(Bunch $bunch, Subscriber $subscriber )
-    {
+    //public function index(Bunch $bunch, Subscriber $subscriber )
+    //{
         //$subscribers = $bunch->subscribers;
        // public function someFunction(Bunch $bunch){
-$subscribers = Subscriber::where('bunch_id', $bunch->id_subscriber)->get();
+//$subscribers = Subscriber::where('bunch_id', $bunch->id_subscriber)->get();
 //}
 
 
@@ -39,17 +44,17 @@ $subscribers = Subscriber::where('bunch_id', $bunch->id_subscriber)->get();
         // 'email_count_subsciber' -> Subscriber::count()
         // 'subscribers' -> Subscriber::latest()->paginate(10);
         //
-return view('subscriber.index', compact('bunch', 'subscribers'));
-    }
+//return view('subscriber.index', compact('bunch', 'subscribers'));
+  //  }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Bunch $bunch)
     {
-        return view('subscriber.create');
+        return view('subscriber.create', compact('bunch'));
     }
 
     /**
@@ -73,11 +78,12 @@ return view('subscriber.index', compact('bunch', 'subscribers'));
      * @param  Subscriber  $subscriber
      * @return \Illuminate\Http\Response
      */
-    public function show(Subscriber $subscriber)
-    {
+    // public function show(Subscriber $subscriber)
+    // {
 
-        return view('subscriber.show', compact('subscriber'));
-    }
+    //     return view('subscriber.show', compact('subscriber'));
+    // }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -114,7 +120,7 @@ return view('subscriber.index', compact('bunch', 'subscribers'));
      * @param  Subscriber  $subscriber
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subscriber $subscriber)
+    public function destroy(Subscriber $subscriber, Bunch $bunch)
     {
         $subscriber->delete();
 

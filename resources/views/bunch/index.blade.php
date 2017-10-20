@@ -38,7 +38,7 @@
                                 <td>{{$model->id_bunch}}</td>
                                 
                                 <td>{{$model->name_bunch}}</td>
-                                <td>{{$model->bunch_id_count}}</td>
+                                <td>{{$model->subscribers->count()}}</td>
                                 <td>{{$model->description_bunch}}</td>
 
                                 <td>{{$model->created_at}}</td>
@@ -47,7 +47,7 @@
                                 <td>
                                     {{Form::open(['class' => 'confirm-delete', 'route' => ['bunch.destroy', $model->id_bunch], 'method' => 'DELETE'])}}
 
-                                    {{ link_to_route('subscriber.index', 'subscribers', [$model->id_bunch], ['class' => 'btn btn-success btn-xs']) }} |
+                                    {{ link_to_route('subscriber.index', 'subscriber', [$model->id_bunch], ['class' => 'btn btn-success btn-xs']) }} |
                                     {{ link_to_route('bunch.edit', 'edit', [$model->id_bunch], ['class' => 'btn btn-success btn-xs']) }} |
                                     {{Form::button('Delete', ['class' => 'btn btn-danger btn-xs', 'type' => 'submit'])}}
                                     {{Form::close()}}

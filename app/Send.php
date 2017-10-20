@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Send extends Model
 {
     //
+    use Selectable;
     protected $primaryKey = 'id_send';
   
 //for updating without del id or other main fields, stus 'fillable' equal update agriment
