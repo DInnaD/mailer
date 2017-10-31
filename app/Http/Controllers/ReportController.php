@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReportRequest;
 use App\Report;
-//use App\Http\Requests\CompaignRequest;
-//use App\Http\Requests\SubscriberRequest;
 use App\Compaign;
 use App\Subscriber;
 use Illuminate\Http\Request;
+use App\Owned;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -23,10 +23,24 @@ class ReportController extends Controller
     public function index(Report $report)
     {
         //asc
-        $reports = $report->orderBy('id_report', 'desc')->get();
         //'reports'-> Report::latest()->paginate(10);
        // 'subscribers' -> Subscriber::latest();
+
+        $reports = $report->orderBy('id_report', 'desc')->get();
+        
         return view('report.index', compact('reports'));
+        // return view('report.index', [
+        //   'reports' => Report::orderBy('created_at', 'desc')->paginate(10)
+        // ]);
+    }
+
+    public function unsubscribe(Request $request){
+        $subscriber = Subscriber::where('email_subscriber', $request->email);
+
+        $subscriber->destroy();
+
+        $unsubscriber === false;//count  yak ih GLOBAL zrobyty i $ failed iz compaign model?????????? 
+
     }
 
    

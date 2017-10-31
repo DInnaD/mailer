@@ -13,20 +13,19 @@ class CreateBunchesTable extends Migration
      */
     public function up()
     {
-        Schema::table('bunches', function (Blueprint $table) {
-            $table->increments('id_bunch');
-            $table->integer('user_id')->nullable()->unsigned();
-            $table->string('name_bunch')->nullable();            
-            $table->string('description_bunch')->nullable();
-            
-            $table->timestamps();
-            $table->integer('subscriber_id')->nullable()->unsigned();
+        Schema::create('bunches', function (Blueprint $table) {
 
-            
-            $table->foreign('subscriber_id')->references('id_subscriber')->on('subscribers');
-            
+            $table->increments('id_bunch');
+            $table->string('name_bunch')->nullable();            
+            $table->longText('description_bunch')->nullable();
+                        
+            $table->timestamps();
+            //For Data
+            $table->integer('user_id')->nullable()->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-       
+            $table->created_by = Auth::user()->name;
+            
+            
         });
     }
 
@@ -37,6 +36,8 @@ class CreateBunchesTable extends Migration
      */
     public function down()
     {
+        
+        Scema::dropforeign(['subscriber_id']);//ce virno?
         Schema::dropIfExists('bunches');
     }
 }

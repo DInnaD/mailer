@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
@@ -38,7 +40,38 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blog</a>
+                        
+                    <ul class="dropdown-menu" role="menu">    
+                        
+                       <li><a href="{{ route('admin.category.index') }}">Categories</a></li>
+                            
+                            <li><a href="{{route('admin.article.index')}}">News</a></li>
+                            <li><a href="{{-- route('template.index') --}}"></a></li>
+                            
+                            
+                    </ul>
+
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">InfoSaver</a>
+
+                    <ul class="dropdown-menu" role="menu">    
+                        <li><a href="{{-- route('post.index') --}}"></a></li>
+                       <li><a href="{{ route('report.index') }}">List of items</a></li>
+                            
+                            <li><a href="{{ route('compaign.index') }}">Add new item</a></li>
+                            <li><a href="{{ route('template.index') }}">Future items</a></li>
+                            
+                            
+                    </ul>
+
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mailer</a>
+                    <ul class="dropdown-menu" role="menu">    
                         <li><a href="{{-- route('post.index') --}}"></a></li>
                        <li><a href="{{ route('report.index') }}">Reports</a></li>
                             
@@ -46,6 +79,10 @@
                             <li><a href="{{ route('template.index') }}">Templates</a></li>
                             <li><a href="{{ route('bunch.index') }}">Bunches</a></li>
                             
+                    </ul>
+
+                    </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -85,8 +122,10 @@
         @yield('content')
     </div>
 
-   
-   <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+
+   <!--script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script-->
+   <script src="{{ asset('js/app.js') }}"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
     <script>
         $('.class').ckeditor();

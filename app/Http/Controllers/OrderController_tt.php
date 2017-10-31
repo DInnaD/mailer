@@ -7,6 +7,7 @@ use App\Mail\OrderShipped;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
+use App\Owned;
 
 class OrderController extends Controller
 {
@@ -21,9 +22,6 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($orderId);
 
-        // Ship order...
-//??????????cc($moreUsers)
-        //Mail::to($request->user())->send(new OrderShipped($order));
         $when = Carbon\Carbon::now()->addMinutes(10);
 
     Mail::to($request->user())

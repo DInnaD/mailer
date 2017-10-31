@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Compaign;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -14,30 +16,30 @@ class OrderShipped extends Mailable
     /**
      * The order instance.
      *
-     * @var Order
+     * @var Compaign $compaign
      */
-    public $order;/**
+    public $compaign;/**
  * The event listener mappings for the application.
  *
  * @var array
  */
-protected $listen = [
-    'Illuminate\Mail\Events\MessageSending' => [
-        'App\Listeners\LogSendingMessage',
-    ],
-    'Illuminate\Mail\Events\MessageSent' => [
-        'App\Listeners\LogSentMessage',
-    ],
-];
+// protected $listen = [
+//     'Illuminate\Mail\Events\MessageSending' => [
+//         'App\Listeners\LogSendingMessage',
+//     ],
+//     'Illuminate\Mail\Events\MessageSent' => [
+//         'App\Listeners\LogSentMessage',
+//     ],
+// ];
 
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @return Compaign $template
      */
-    public function __construct(Order $order)
+    public function __construct(Compaign $template)
     {
-        $this->order = $order;
+        $this->compaign = $template;
     }
 
     /**
@@ -47,12 +49,22 @@ protected $listen = [
      */
     public function build()
     {
+        //return $this->view('compaign.send', ['order' => $this->order]);
+        return $this->subject($this->campaign->name_compaign)
+                    ->from('innadanylevska@gmail.com', config('app.name')) 
+                    ->markdown('emails.campaigns.sent');//posrednik email de cya table????  
+                //     ->view('compaign.send')
+                //     ->with([
+                //   'order' => $this->order,
+                // ]);
+
+
         //'from' => ['address' => 'example@example.com', 'name' => 'App Name'],
-         return $this->subject()
-                     ->from('example@example.com')
-                     ->to()
-                     ->view('emails.orders.shipped')
-                     //->text('emails.orders.shipped_plain');
+         // return $this->subject()
+         //             ->from('example@example.com')
+         //             ->to()
+         //             ->view('emails.orders.shipped')
+         //             //->text('emails.orders.shipped_plain');
         
     }
 

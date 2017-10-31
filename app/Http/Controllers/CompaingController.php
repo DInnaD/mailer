@@ -3,33 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CompaignRequest;
-//use App\Http\Requests\TemplateRequest;
-//use App\Http\Requests\BunchRequest;
-use App\Compaign;
+
 use App\Template;
 use App\Bunch;
-use App\Send;
+use App\Mail\OrderShipped;
+use App\Preview;
+use App\Subscriber;
+use App\Http\Requests;//\PostRequest;
 use Illuminate\Http\Request;
+use App\Mail;
+use App\Owned;
+use Illuminate\Support\Facades\Auth;
 
-class CompaignController extends Controller
-{
+class CompaignController extends Controller{
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    //Post $post-????????///
-
-    public function index(Compaign $compaign, Template $template , Bunch $bunch, Send $send)
+    
+    public function index(App\Compaign $compaign, Template $template , Bunch $bunch, Preview $preview)
     {
-        //asc
-        $compaigns = $compaign->orderBy('id_compaign', 'desc')->get();
-       //'compaigns' -> Compaign::latest()->paginate(10);
-        //'bunches' -> Bunch::latest();
-        // 'templates' -> Template::latest();
-        return view('compaign.index', compact('compaigns', 'bunches', 'templates', 'send'));
-    }
 
+        // $compaigns = $compaign->orderBy('id_compaign', 'desc')->get();
+       
+        // return view('compaign.index', compact('compaigns', 'bunches', 'templates', 'previews'));
+        return view('compaign.index', [
+          'compaigns' => App\Compaign::orderBy('created_at', 'desc')->paginate(10)
+        ]);
+    }
+    //show
+     /**
+     * Display the specified resource.
+     *
+     * TODO: $id -> $compaign
+     *
+     * @param  Compaign  $compaign
+     * @param  Subscriber $subscriber
+     * @param  Template $template
+     * 
+     * @return \Illuminate\Http\Response
+     */
+ 
+     /*public function preview(Compaign $compaign){  
+
+        return view('compaign.preview', compact('compaign'));
+
+    } */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\CompaignRequest $request
+     * @return \Illuminate\Http\Response
+     */
+         //storage dlya preview
+    public function send(Compaign $compaign, CompaignRequest $request, Preview $preview, Template $template , Bunch $bunch){  
+
+        $compaign->send();
+        //$preview->send();
+
+    return redirect()->route('compaign.index')->with('success', 'Thanks! Your message has been sent');
+
+} 
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +76,7 @@ class CompaignController extends Controller
         return view('compaign.create');
     }
 
-    /**
+   /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -69,7 +105,7 @@ class CompaignController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id_compaign
      * @return \Illuminate\Http\Response
      */
 
@@ -108,4 +144,7 @@ class CompaignController extends Controller
 
         return redirect()->route('compaign.index');
     }
+ 
+    
+
 }

@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TemplateRequest;
 use App\Template;
+use App\Compaign;
 use Illuminate\Http\Request;
-
-use App\Http\Requests\PostRequest;
-use App\Post;
+use App\Owned;
+use Illuminate\Support\Facades\Auth;
 
 class TemplateController extends Controller
 {
@@ -16,18 +16,17 @@ class TemplateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //Post $post-????????///
 
     public function index(Template $template)
     {
-        //asc
-        $templates = $template->orderBy('id_template', 'desc')->get();
+        
+        //$templates = $template->orderBy('id_template', 'desc')->get();//owned();//created_at
 
-//        dd($templates);
 
-//        return view('templates.index', ['templateses' => $templateses]);
-         //'templates' => Template::latest()->paginate(10);
-        return view('template.index', compact('templates'));
+        //return view('template.index', compact('templates'));
+        return view('template.index', [
+          'templates' => Template::orderBy('created_at', 'desc')->paginate(10)
+        ]);
     }
 
     /**
@@ -35,9 +34,10 @@ class TemplateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+   
+      public function create(Compaign $compaign)
     {
-        return view('template.create');
+        return view('template.create', compact('compaign'));
     }
 
     /**
@@ -46,11 +46,19 @@ class TemplateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Template $template, TemplateRequest $request)
+  
+         /**
+     * Store a newly created resource in storage.
+     *
+     * @param TemplateRequest $templateRequest
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Template $template, TemplateRequest $templateRequest)
     {
-        $template->create($request->all());
+        $template->create($templateRequest->all());
 
-        return redirect()->route('template.index');
+        return redirect()->route('template.index', compact('compaign'));//->with('me');
     }
 
     
@@ -72,17 +80,13 @@ class TemplateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id_template
      * @return \Illuminate\Http\Response
      */
 
    // Template $template or id
     public function edit(Template $template)
     {
-       // $data = [
-         //   'title' => 'Update info'
-
-        //];
         return view('template.edit', compact('template'));
     }
 

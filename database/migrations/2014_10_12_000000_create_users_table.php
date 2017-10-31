@@ -20,6 +20,20 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+//all foring key ???
+
+            //is_admin 
+            //status--baned or not bool
+            //avatar
+            //created_at
+            //update_at
+            /////////////////
+            // article()
+            // author() equal owned()
+            // toggleStatus()
+
+            //subscription  : id, email=verif, token=agreement/composer/, created_at, updated_at  **add(), remove()
         });
     }
 

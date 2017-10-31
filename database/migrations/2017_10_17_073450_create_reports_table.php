@@ -14,13 +14,34 @@ class CreateReportsTable extends Migration
     public function up()
     {
         Schema::create('reports', function (Blueprint $table) {
-            $table->increments('id_report');
-         
-            $table->integer('compaign_id')->nullable()->unsigned();
-            $table->integer('subscriber_id')->nullable()->unsigned();
-           // $table->integer('user_id')->nullable()->unsigned();
+            $table->increments('id_report'); 
             
-            $table->timestamps();//->nullable();
+        // For Data
+        
+        // subject
+        $table->string('subject')->nullable();
+        // from
+        $table->string('email')->nullable();
+        // to
+        $table->string('to')->nullable();
+        // message
+        $table->string('message')->nullable();
+        // sent
+        $table->boolean('sent')->default(false);//+count true to %
+        // viewed
+        $table->boolean('viewed')->default(false);//+count to %
+        // unsubscriber
+        $table->boolean('unsubscriber')->default(false);//+count to %
+        // because
+        $table->string('because')->nullable();
+        // failed
+        $table->boolean('failed')->default(false);//count false to %
+        
+        $table->timestamps();
+        
+        $table->integer('user_id')->nullable()->unsigned();
+        $table->foreign('user_id')->references('id')->on('users');
+        $table->created_by = Auth::user()->name;    
             
         });
     }

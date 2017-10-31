@@ -67,5 +67,12 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        //Queue::push('SignUpService', compact('user'));
+
+//add last
+        event(new UserRegistered($user));
+
+//add last
+        return $user;
     }
 }

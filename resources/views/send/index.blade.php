@@ -46,7 +46,7 @@
 
     </div>
         <div class="panel-body">
-        {!! Form::open(['route' => 'send.store']) !!}
+        {!! Form::open(['url' => 'send.getPost']) !!}
 
         @include('send._form')
 

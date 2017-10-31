@@ -24,8 +24,8 @@ class SubscriberRequest extends FormRequest
      public function rules()
     {
         return [
-            'firstname_subscriber' => 'min:5|max:32',
-            'lastname_subscriber' => 'min:5|max:32',
+            //'firstname_subscriber' => 'min:5|max:32',
+            'email_subscriber' => 'email',
             
         ];
     }

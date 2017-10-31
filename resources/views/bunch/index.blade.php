@@ -40,10 +40,7 @@
                                 <td>{{$model->name_bunch}}</td>
                                 <td>{{$model->subscribers->count()}}</td>
                                 <td>{{$model->description_bunch}}</td>
-
-                                <td>{{$model->created_at}}</td>
-                                
-                                
+                                <td>{{$model->created_at}}</td> 
                                 <td>
                                     {{Form::open(['class' => 'confirm-delete', 'route' => ['bunch.destroy', $model->id_bunch], 'method' => 'DELETE'])}}
 

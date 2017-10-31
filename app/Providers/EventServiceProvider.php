@@ -12,9 +12,14 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
+
+//add last
+    
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        'App\Events\UserRegistered' => [
+            'App\Listeners\CreateProfile',
+            'App\Listeners\AsignRole',
+            'App\Listeners\SendActivationCode', 
         ],
     ];
 

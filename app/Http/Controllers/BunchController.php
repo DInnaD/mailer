@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BunchRequest;
 use App\Bunch;
-//use App\Http\Requests\SubscriberRequest;
 use App\Subscriber;
 use Illuminate\Http\Request;
-
+use App\Owned;
+//use Illuminate\Support\Facades\Auth;
+use App\Auth;
+use App\User;
 class BunchController extends Controller
 {
     /**
@@ -15,17 +17,29 @@ class BunchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //Post $post-????????///
+    
 
     public function index(Bunch $bunch, Subscriber $subscriber)
     {
-        
+         return view('bunch.index', [
+          'bunches' => Bunch::orderBy('created_at', 'desc')->paginate(10)
+        ]); 
         //asc 
-       $bunches = $bunch->orderBy('id_bunch', 'desc')->get();
+       // $bunches = $bunch->orderBy('id_bunch', 'desc')->remember(60)->get();
           
-        //'bunches' -> Bunch::latest()->paginate(10);
-        // 'subscribers' -> Subscriber::latest();
-         return view('bunch.index', compact('bunches', 'subscribers'));
+       //   return view('bunch.index', compact('bunches', 'subscribers'));
+
+        //  return view('bunch.index', [
+        //   'bunches' => User::find($userId)->bunches
+        // ]);
+
+        //  $bunches = User::find($userId)->bunches;
+        // return view('bunches.index', compact('bunches', 'subscribers')); 
+        //  $bunches = $user->bunches;
+        // return view('bunches.index', compact('bunches', 'subscribers')); 
+
+           
+   
     }
 
     /**
@@ -35,9 +49,9 @@ class BunchController extends Controller
      */
     public function create()
     {
+
         return view('bunch.create');
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -51,39 +65,39 @@ class BunchController extends Controller
 
         return redirect()->route('bunch.index');
     }
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param BunchRequest $bunchRequest
+     * @param Compaign $compaign
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    
     /**
      * Display the specified resource.
      *
      * TODO: $id -> $bunch
      *
      * @param  Bunch  $bunch
+     * @param Subscriber $subscriber
      * @return \Illuminate\Http\Response
      */
     public function show(Bunch $bunch, Subscriber $subscriber)
     {
-             //связи между
-//моделями. С их помощью можно получить всех подписчиков из списка просто вызвав
-//свойство обьекта, с которым они связаны:
-        //$subscribers = 
-        //$bunch->subscribers;
         return view('bunch.show', compact('bunch', 'subscribers'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id_bunch
      * @return \Illuminate\Http\Response
      */
 
    // Post $bunch or id
     public function edit(Bunch $bunch)
     {
-       // $data = [
-         //   'title' => 'Update info'
-
-        //];
+      
         return view('bunch.edit', compact('bunch'));
     }
 

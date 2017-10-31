@@ -42,6 +42,7 @@
                                 <td>{{$model->content_template}}</td>                                
                                 <td>{{$model->created_at}}</td>
                                 
+                                
                                 <!--??????????????????????????_templates-->
                                 <td>
                                     {{Form::open(['class' => 'confirm-delete', 'route' => ['template.destroy', $model->id_template], 'method' => 'DELETE'])}}
@@ -56,7 +57,7 @@
                         
 
                         <div class="text-center">
-                            { !! $template->render() !!}
+                            { !! $templates->render() !!}
 
                         </div>
                    

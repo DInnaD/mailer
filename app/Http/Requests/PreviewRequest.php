@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SendRequest extends FormRequest
+class PreviewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class SendRequest extends FormRequest
      public function rules()
     {
         return [
-            'to_send' => 'min:1|max:200',
+            'to' => 'min:1|max:200',
             
         ];
     }

@@ -15,17 +15,17 @@ class CreateTemplatesTable extends Migration
     public function up()
     {
         Schema::create('templates', function (Blueprint $table) {
+            
             $table->increments('id_template');
-            $table->integer('user_id')->unsigned()->nullable();
-
             $table->string('name_template')->nullable();
-            $table->string('content_template')->nullable();
-            
+            $table->longText('content_template')->nullable();
+                        
             $table->timestamps();
-            
-            
-            //$table->foreign('subscriber_id')->references('id_subscriber')->on('subscribers');
+            // For Data
+            $table->integer('user_id')->nullable()->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('created_by');
+
         });
     }
 

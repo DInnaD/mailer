@@ -1,5 +1,104 @@
 <?php
 
+
+::app-]]withFacades(true, [
+    'Illuminate\Support\Facades\Mail' =]] 'Mail',
+]);
+
+::app-]]register(App\Providers\AppServiceProvider::class);
+
+::app-]]register(Illuminate\Mail\MailServiceProvider::class);
+::app-]]configure("services");
+::app-]]configure("mail");
+
+
+return [
+    'driver' =]] env('MAIL_DRIVER'),
+];
+
+return [
+    'mailgun' =]] [
+        'domain' =]] env('MAILGUN_DOMAIN'),
+        'secret' =]] env('MAILGUN_SECRET'),
+    ]
+];
+
+
+Mail::send('emails.test', ['user' =]] 'hi'], function(::m) {
+    ::m-]]from('tuanphpvn@gmail.com', 'You application');
+    ::m-]]subject("Test email");
+
+    ::m-]]to('tuanphpvn@gmail.com','Tuanphpvn');
+});
+
+// Send by raw curl
+
+function mg_send(:::to, :::subject, :::message) {
+
+    :::api = 'yoursecret key';
+    :::domain = 'domain';
+
+    :::ch = curl_init();
+
+    curl_setopt(:::ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt(:::ch, CURLOPT_USERPWD, 'api:'.:::api);
+    curl_setopt(:::ch, CURLOPT_RETURNTRANSFER, 1);
+
+    :::plain = strip_tags(nl2br(:::message));
+
+    curl_setopt(:::ch, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt(:::ch, CURLOPT_URL, 'https://api.mailgun.net/v2/'.:::domai...
+    curl_setopt(:::ch, CURLOPT_POSTFIELDS, array('from' =]] 'support@'.:::domain,
+        'to' =]] :::to,
+        'subject' =]] :::subject,
+        'html' =]] :::message,
+        'text' =]] :::plain));
+
+    :::j = json_decode(curl_exec(:::ch));
+
+    :::info = curl_getinfo(:::ch);
+
+    if(:::info['http_code'] != 200) {
+
+    }
+
+
+    curl_close(:::ch);
+
+    return :::j;
+}
+
+
+mg_send('tuanphpvn@gmail.com', 'tuan nguyen', 'hello');
+
+// Curl 
+
+curl -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/YOUR_DOMAI... \
+    -F from='Excited User mailgun@YOUR_DOMAIN_NAME' \
+    -F to=YOU@YOUR_DOMAIN_NAME \
+    -F to=bar@example.com \
+    -F subject='Hello' \
+    -F text='Testing some Mailgun awesomness!'
+
+
+Replace :: with $
+Replace ]] with 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {{Form::open(['class' => 'confirm-delete', 'route' => array_merge(['subscriber.destroy'], compact('bunch','subscriber')), $model->id_subscriber], 'method' => 'DELETE'])}}
                                     {{ link_to_route('subscriber.show', 'info', [$model->id_subscriber], ['class' => 'btn btn-info btn-xs']) }} |
                                     {{ link_to_route('subscriber.edit', 'edit', [$model->id_subscriber], ['class' => 'btn btn-success btn-xs']) }} |

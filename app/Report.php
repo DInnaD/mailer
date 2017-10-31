@@ -7,21 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     //
-    use Selectable;
+    use Selectable, Owned;
     protected $primaryKey = 'id_report';
-    
-//for updating without del id or other main fields, stus 'fillable' equal update agriment
-    
-    protected $fillable = ['compaign_id', 'subscriber_id', 'subscriber_id'];
-    
-    //public function getCreatedFormatAttribute('Y-m-d H:i:s'$subscriberses)->format('Y-m-d / H:i:s');
-    
-    public function compaigns(){
-		return $this->hasMany(Compaign::class);
-	}
+    //protected $name = 'viewed'.............;
+    protected $fillable = ['subject', 'to', 'from', 'message', 'sent', 'viewed', 'unsubscriber', 'because', 'failed', 'created_by'];
+
+    public function user(){
+		return $this->hasOne(User::class);
+	}//d
+    public function compaign(){
+		return $this->hasOne(Compaign::class, 'report_id', 'id_report');
+	}//d	
 	public function subscribers(){
-		return $this->hasMany(Subscriber::class);
-	}
-	/////////////////////////////////////////////////////
+		return $this->hasMany(Subscriber::class, 'report_id', 'id_report');
+	}//d	
+	///////////////////////////////////////////////////api
+	// public function preview(){
+ // 		return $this->belongsTo(Preview::class, 'preview_id', 'id_preview');
+	// }
+	//public function getCreatedFormatAttribute('Y-m-d H:i:s'$subscriberses)->format('Y-m-d / H:i:s');
+	// public function compaign(){
+ // 		return $this->belongsTo(Compaign::class, 'compaign_id', 'id_compaign');
+	// }
+	// public function subscriber(){
+ // 		return $this->belongsTo(Subscriber::class, 'subscriber_id', 'id_subscriber');
+	// }
  
 }

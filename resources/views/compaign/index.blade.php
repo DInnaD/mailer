@@ -37,20 +37,29 @@
                                 <td>{{$model->id_compaign}}</td>
 
                                 <td>{{$model->name_compaign}}</td>
-                                <td>{{$model->template_id}}</td>
-                                <td>{{$model->bunch_id}}</td>
+                                <td>{{$model->template->name_template}}</td>
+                                <td>{{$model->bunch->name_bunch}}</td>
                                 <td>{{$model->description_compaign}}</td>
-                                <td>{{$model->status_compaign}}</td>
+                                <td>{{$model->report_id}}</td>
                                 
                                 <td>{{$model->created_at}}</td>
                                 
                                 
                                
                                 <td>
+                                 {{--Form::open(['class' => 'confirm-delete', 'route' => ['compaign.preview', $model->id_compaign], 'method' => 'POST'])}}
+
+                                 {{Form::button('send', ['class' => 'btn btn-danger btn-xs', 'type' => 'submit'])}}
+
+                                 {{Form::close()--}}
+
+                                   
+
+
                                     {{Form::open(['class' => 'confirm-delete', 'route' => ['compaign.destroy', $model->id_compaign], 'method' => 'DELETE'])}}
 
-                                    {{ link_to_route('send.index', 'send', [$model->id_compaign], ['class' => 'btn btn-success btn-xs']) }} |
-
+                                    {{ link_to_route('preview.index', 'preview', [$model->id_compaign], ['class' => 'btn btn-success btn-xs']) }}
+                           
                                     {{ link_to_route('compaign.show', 'info', [$model->id_compaign], ['class' => 'btn btn-success btn-xs']) }} |
 
                                     {{ link_to_route('compaign.edit', 'edit', [$model->id_compaign], ['class' => 'btn btn-success btn-xs']) }} |
